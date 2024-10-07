@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Main Page</title>
+  <style>
+    body {
+      font-family: Roboto, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-image: linear-gradient(#dbd3c6, #c4c4c4);
+      background-attachment: fixed;
+    }
+    h1 {
+      color: #000000;
+      font-family: Roboto, sans-serif;
+    }
+    .tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    gap: 8px;
+    flex-wrap: wrap;
+    }
+    button {
+      padding: 15px;
+      border: 1px solid black;
+      border-radius: 1px;
+      margin: 10px;
+      min-width: 10px;
+      font-size: calc(1rem - 0.1vmin);
+      word-wrap: break-word;
+      cursor: pointer;
+      width: 50px; /* Set the width to 50px */
+      height: 50px; /* Set the height to 50px */
+      background-size: cover; /* Ensure the background image covers the entire button */
+      position: relative;
+    }
+    button::before {
+      content: attr(data-color); /* Get the color from the data-color attribute */
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 0.7rem;
+      font-family: 'Comic Sans MS', cursive; /* Replace with your desired font */
+      color: #fff; /* Set the text color to white */
+      text-transform: uppercase;
+    }
+    .green {
+      background-color: #2aba8f;
+      color: white;
+    }
+    .red {
+      background-color: #d9283b;
+      color: white;
+    }
+    .blue {
+      background-color: #0d8aa3;
+      color: white;
+    }
+    .yellow {
+      background-color: #ffb730;
+      color: white;
+    }
+    .purple {
+      background-color: #7d009cc7;
+      color: white;   
+    }
+    .cian {
+      background-color: #00bbbb;
+      color: white;
+    }
+    .off {
+      background-color: #000;
+      color: white;
+    }
+    .animation {
+      background-color: rgb(236, 107, 32);
+      color: white;
+    }
+    .border-prepare {
+      width: 100%;
+      height: auto;
+      top: 0;
+      left: 0;
+      position: fixed;
+      background-color: #ffb730;
+      border-bottom: 30px  solid #ffb730;
+    }
+  </style>
+</head>
+<html>
+<body>
+  <div class="border-prepare"></div>
+  
+  <h1>led control</h1>
+  <button class="green" onclick="controlLED('green')"></button>
+  <button class="red" onclick="controlLED('red')"></button>
+  <button class="blue" onclick="controlLED('blue')"></button>
+  <button class="yellow" onclick="controlLED('yellow')"></button>
+  <p></p>
+  <button class="purple" onclick="controlLED('purple')"></button>
+  <button class="cian" onclick="controlLED('cian')"></button>
+  <button class="animation" onclick="controlLED('animation')"></button>
+  <button class="off" onclick="controlLED('off')"></button>
+
+
+  <script>
+    function controlLED(state) {
+      fetch(`/led/${state}`)
+        .then(response => response.text())
+        .catch(error => console.error('Error:', error));
+    }
+  </script>
+</body>
+</html>
